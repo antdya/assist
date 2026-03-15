@@ -2,7 +2,6 @@
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Квартирный AI-помощник</title>
   <meta name="description" content="Персональный AI-помощник для покупки квартиры в России. Помогу с бюджетом, ипотекой, районами и выбором квартиры.">
@@ -65,7 +64,7 @@
       --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
     }
 
-    /* ── BASE ── */
+    /* BASE */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html {
       scroll-behavior: smooth;
@@ -107,7 +106,6 @@
       }
     }
 
-    /* ── LAYOUT ── */
     .container,
     .container--wide {
       max-width: var(--content-wide);
@@ -115,7 +113,7 @@
       padding-inline: var(--space-5);
     }
 
-    /* ── NAV ── */
+    /* NAV */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -155,7 +153,7 @@
     }
     .theme-toggle:hover { color: var(--color-text); background: var(--color-surface-offset); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100dvh;
       display: flex;
@@ -196,7 +194,7 @@
       margin-inline: auto;
     }
 
-    /* ── SCENARIOS ── */
+    /* SCENARIOS */
     .scenarios {
       margin-bottom: var(--space-10);
     }
@@ -280,7 +278,7 @@
     .scenarios__toggle.is-open svg { transform: rotate(180deg); }
     .scenarios__toggle:hover { color: var(--color-primary); }
 
-    /* ── SEND BOX ── */
+    /* SEND BOX */
     .send-box {
       display: flex;
       gap: var(--space-2);
@@ -320,7 +318,7 @@
     }
     .send-btn:active { transform: translateY(0); }
 
-    /* ── SCROLL LINK ── */
+    /* SCROLL LINK */
     .hero__scroll {
       display: inline-flex;
       align-items: center;
@@ -341,7 +339,7 @@
       50% { transform: translateY(4px); }
     }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     .section {
       padding-block: clamp(var(--space-16), 8vw, var(--space-24));
     }
@@ -370,7 +368,7 @@
       margin-inline: auto;
     }
 
-    /* ── HELP ITEMS ── */
+    /* HELP ITEMS */
     .help-grid {
       display: grid;
       gap: var(--space-3);
@@ -415,7 +413,7 @@
       font-size: var(--text-sm);
     }
 
-    /* ── FAQ ── */
+    /* FAQ */
     .faq-list { display: flex; flex-direction: column; }
     .faq-item {
       border-bottom: 1px solid var(--color-divider);
@@ -460,7 +458,7 @@
       max-width: 66ch;
     }
 
-    /* ── CTA SECTION ── */
+    /* CTA */
     .cta-section {
       padding-block: clamp(var(--space-20), 10vw, var(--space-24));
       text-align: center;
@@ -493,7 +491,7 @@
     }
     .btn-primary:active { transform: translateY(0); }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     .footer {
       border-top: 1px solid var(--color-divider);
       padding-block: var(--space-8);
@@ -504,7 +502,7 @@
       color: var(--color-text-faint);
     }
 
-    /* ── MOBILE ── */
+    /* MOBILE */
     @media (max-width: 640px) {
       .hero { padding-bottom: var(--space-12); }
       .send-box { flex-direction: column; }
@@ -513,7 +511,6 @@
   </style>
 </head>
 <body>
-  <!-- NAV -->
   <nav class="nav" aria-label="Навигация">
     <div class="nav__inner">
       <a href="#" class="nav__logo" aria-label="На главную">
@@ -526,4 +523,398 @@
       <div class="nav__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Переключить тему">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top" aria-label="Начало работы">
+      <div class="container">
+        <p class="hero__eyebrow">AI-помощник по покупке жилья</p>
+        <h1 class="hero__title">Я помогу найти квартиру, которая подойдёт именно тебе</h1>
+        <p class="hero__subtitle">
+          Я помогу с бюджетом, ипотекой, районами и самой квартирой — соберу картинку целиком и проведу к сделке без лишних переживаний.
+        </p>
+
+        <div class="scenarios">
+          <p class="scenarios__label">Выбери сценарий, который ближе всего</p>
+
+          <div class="scenarios-list" id="scenariosVisible">
+            <button class="scenario-card" data-scenario="Покупаю вместо аренды">
+              <div class="scenario-card__title">Покупаю вместо аренды</div>
+              <div class="scenario-card__text">
+                Помогу понять, что выгоднее, посчитать бюджет и подобрать «свою» квартиру.
+              </div>
+            </button>
+
+            <button class="scenario-card" data-scenario="Создаём семью и переезжаем">
+              <div class="scenario-card__title">Создаём семью и переезжаем</div>
+              <div class="scenario-card__text">
+                Помогу согласовать желания, оценить бюджет и выбрать комфортное семейное жильё.
+              </div>
+            </button>
+
+            <button class="scenario-card" data-scenario="Нужна квартира побольше">
+              <div class="scenario-card__title">Нужна квартира побольше</div>
+              <div class="scenario-card__text">
+                Оценим необходимость переезда и найдём более просторное жильё.
+              </div>
+            </button>
+
+            <button class="scenario-card" data-scenario="Хочу жильё и район получше">
+              <div class="scenario-card__title">Хочу жильё и район получше</div>
+              <div class="scenario-card__text">
+                Помогу перевести желания в критерии и найти реально более комфортное жильё.
+              </div>
+            </button>
+          </div>
+
+          <div class="scenarios__extra" id="scenariosExtra" aria-hidden="true">
+            <div class="scenarios__extra-inner">
+              <div class="scenarios-list">
+                <button class="scenario-card" data-scenario="Разъезжаюсь с родителями">
+                  <div class="scenario-card__title">Разъезжаюсь с родителями</div>
+                  <div class="scenario-card__text">
+                    Помогу сориентироваться в рынке и подобрать первое самостоятельное жильё по средствам.
+                  </div>
+                </button>
+
+                <button class="scenario-card" data-scenario="Покупаю квартиру для ребёнка">
+                  <div class="scenario-card__title">Покупаю квартиру для ребёнка</div>
+                  <div class="scenario-card__text">
+                    Помогу выбрать формат и район, надёжный и удобный на долгий срок.
+                  </div>
+                </button>
+
+                <button class="scenario-card" data-scenario="Квартира для родителей">
+                  <div class="scenario-card__title">Квартира для родителей</div>
+                  <div class="scenario-card__text">
+                    Подберём удобное и безопасное жильё для родителей рядом с нужной инфраструктурой.
+                  </div>
+                </button>
+
+                <button class="scenario-card" data-scenario="Переезжаю в другой город">
+                  <div class="scenario-card__title">Переезжаю в другой город</div>
+                  <div class="scenario-card__text">
+                    Помогу разобраться в районах, проверить застройщиков и безопасно купить дистанционно.
+                  </div>
+                </button>
+
+                <button class="scenario-card" data-scenario="Дополнительное жильё для отдыха">
+                  <div class="scenario-card__title">Дополнительное жильё для отдыха</div>
+                  <div class="scenario-card__text">
+                    Определимся с приоритетом отдыха или дохода и подберём удобный вариант.
+                  </div>
+                </button>
+
+                <button class="scenario-card" data-scenario="Инвестирую в недвижимость">
+                  <div class="scenario-card__title">Инвестирую в недвижимость</div>
+                  <div class="scenario-card__text">
+                    Разберём реальные цифры доходности и выберем ликвидный объект без лишнего шума.
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button class="scenarios__toggle" id="scenariosToggle" aria-expanded="false" aria-controls="scenariosExtra">
+            <span id="toggleText">Показать другие сценарии</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
+
+        <form class="send-box" id="sendForm" aria-label="Введите свой вопрос">
+          <input
+            type="text"
+            class="send-input"
+            id="messageInput"
+            placeholder="Или напиши свой вопрос..."
+            aria-label="Ваш вопрос"
+            autocomplete="off"
+          />
+          <button type="submit" class="send-btn">
+            Отправить
+          </button>
+        </form>
+
+        <a href="#about" class="hero__scroll" aria-label="Перейти к описанию">
+          <span>смотри, как я могу помочь тебе</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-label="Чем помогу">
+      <div class="container">
+        <p class="section__label">Возможности</p>
+        <h2 class="section__heading">Чем я смогу<br>тебе помочь</h2>
+        <div class="help-grid">
+          <div class="help-item">
+            <div class="help-item__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <p class="help-item__text">
+              <strong>Разберусь в твоей ситуации</strong>
+              Помогу разобраться в твоей ситуации, деньгах, ипотеке, районах и типах жилья, чтобы такое важное решение, как покупка квартиры, было обдуманным и эффективным.
+            </p>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <p class="help-item__text">
+              <strong>Составлю понятный шаг за шагом план</strong>
+              Составлю понятный план: от определения бюджета и района до выбора конкретной квартиры и выхода на сделку.
+            </p>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M12 8v4"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <p class="help-item__text">
+              <strong>Буду сопровождать на каждом шаге</strong>
+              Буду с тобой на каждом шаге, отслеживать изменения на рынке и корректировать стратегию под твои новые предпочтения.
+            </p>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+            <p class="help-item__text">
+              <strong>Подберу финансирование и разберу расходы</strong>
+              Подберу подходящие варианты финансирования и досконально разберу дополнительные расходы, чтобы они не стали неожиданностью.
+            </p>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/>
+              </svg>
+            </div>
+            <p class="help-item__text">
+              <strong>Помогу выбрать «свою» квартиру</strong>
+              Район, дом и застройщик, новостройка или вторичка, планировка, этаж, вид из окна, инфраструктура и ликвидность на будущее.
+            </p>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <p class="help-item__text">
+              <strong>Найду живую поддержку, если нужна</strong>
+              Если понадобится поддержка в переговорах и на сделке — найду риэлтора среди твоих контактов или подскажу, как найти и оценить специалиста на рынке.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-label="Часто задаваемые вопросы">
+      <div class="container">
+        <p class="section__label">FAQ</p>
+        <h2 class="section__heading">Часто задаваемые<br>вопросы</h2>
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-1">
+              <span>С чего начать покупку квартиры?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-1" role="region">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__content">Начни с оценки своей финансовой ситуации: сколько есть на первоначальный взнос, какой ежемесячный платёж комфортен, есть ли право на льготную ипотеку. Затем определись с основными критериями: город, район, тип жилья (новостройка или вторичка), минимальные параметры квартиры. Уже после этого имеет смысл уходить в просмотры объявлений.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-2">
+              <span>Новостройка или вторичка — что лучше?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-2" role="region">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__content">Новостройка часто дешевле на ранних стадиях строительства, даёт современные планировки и льготные ставки. Вторичка позволяет заехать сразу, имеет сложившуюся инфраструктуру и меньше рисков недостроя. Я помогу взвесить плюсы и минусы именно для твоей ситуации и горизонта планирования.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-3">
+              <span>Как рассчитать, сколько я могу потратить?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-3" role="region">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__content">Ориентир: платёж по ипотеке обычно не превышает 30–35% семейного дохода. Стоимость квартиры = твой первоначальный взнос + реальная сумма ипотеки, которую одобрит банк. Плюс 3–7% сверху на дополнительные расходы: налоги, страховку, нотариуса, регистрацию и базовый ремонт.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-4">
+              <span>Какие льготные ипотечные программы сейчас доступны?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-4" role="region">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__content">Действуют семейная ипотека, ИТ-ипотека, региональные программы (дальневосточная и др.), сельская ипотека. У всех свои условия по ставке, размеру кредита и требованиям к заёмщику и объекту. Я помогу проверить, на какие программы ты можешь претендовать сейчас и как их оптимально использовать.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-5">
+              <span>На что обратить внимание при выборе района?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-5" role="region">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__content">Важно смотреть на транспортную доступность (метро, МЦД, пробки), инфраструктуру (школы, сады, поликлиники, магазины), зелень и шум, контингент и планы по застройке района. Я помогу перевести твой привычный сценарий жизни в конкретные критерии и подобрать районы, которые подойдут по ним.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-6">
+              <span>Нужен ли риэлтор или можно обойтись без него?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-6" role="region">
+              <div class="faq-answer__inner">
+                <p class="faq-answer__content">Для покупки у застройщика часто можно обойтись без риэлтора — многие процессы стандартизированы. На вторичном рынке специалист полезен: проверка документов, история квартиры, торг, сопровождение сделки. Я помогу понять, нужен ли тебе риэлтор, и подскажу, как выбрать адекватного и прозрачного по цене.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section" id="try" aria-label="Попробовать ассистента">
+      <div class="container">
+        <p class="section__label">Начать</p>
+        <h2 class="section__heading">Готов попробовать?</h2>
+        <p>Задай первый вопрос — я помогу разобраться в твоей ситуации и сделаю покупку квартиры понятной и комфортной.</p>
+        <a href="#top" class="btn-primary" id="tryBtn">
+          Попробовать сейчас
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 КвартАссист — персональный AI-помощник по покупке жилья</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    (function(){
+      const t = document.querySelector('[data-theme-toggle]');
+      const r = document.documentElement;
+      let d = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      r.setAttribute('data-theme', d);
+      function updateIcon() {
+        if (!t) return;
+        t.setAttribute('aria-label', 'Переключить на ' + (d === 'dark' ? 'светлую' : 'тёмную') + ' тему');
+        t.innerHTML = d === 'dark'
+          ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      }
+      updateIcon();
+      if (t) t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); updateIcon(); });
+    })();
+
+    const ASSIST_URL = 'https://antdya.github.io/assist/assist.html';
+
+    // Scenarios toggle
+    const toggle = document.getElementById('scenariosToggle');
+    const extra = document.getElementById('scenariosExtra');
+    const toggleText = document.getElementById('toggleText');
+    toggle.addEventListener('click', () => {
+      const open = extra.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open);
+      extra.setAttribute('aria-hidden', !open);
+      toggleText.textContent = open ? 'Скрыть сценарии' : 'Показать другие сценарии';
+    });
+
+    // Scenario cards → redirect
+    document.querySelectorAll('.scenario-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const msg = btn.getAttribute('data-scenario');
+        window.location.href = ASSIST_URL + (msg ? '?q=' + encodeURIComponent(msg) : '');
+      });
+    });
+
+    // Send form → redirect
+    document.getElementById('sendForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const val = document.getElementById('messageInput').value.trim();
+      window.location.href = ASSIST_URL + (val ? '?q=' + encodeURIComponent(val) : '');
+    });
+
+    // CTA → наверх + фокус
+    document.getElementById('tryBtn').addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => { document.getElementById('messageInput').focus(); }, 600);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-btn').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          document.getElementById(b.getAttribute('aria-controls')).classList.remove('is-open');
+        });
+        if (!expanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-open');
+        }
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.help-item, .faq-item, .section__heading').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
