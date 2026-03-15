@@ -540,7 +540,7 @@
           Скажите, что вы ищите, и я помогу разобраться во всех деталях.
         </p>
 
-        <div class="scenarios">
+        <div class="scenarios" id="scenarios">
           <!-- <p class="scenarios__label">Выберите ваш сценарий</p>-->
 
           <div class="scenarios-list" id="scenariosVisible">
@@ -816,7 +816,7 @@
         <!--<p class="section__label">Начать</p>-->
         <h2 class="section__heading">Готовы попробовать?</h2>
         <p>Задайте первый вопрос — я помогу разобраться в вашей ситуации и сделаю покупку квартиры понятной и комфортной.</p>
-        <a href="#top" class="btn-primary" id="tryBtn">
+        <a href="#scenarios" class="btn-primary">
           Попробовать сейчас
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -879,12 +879,14 @@
       window.location.href = ASSIST_URL + (val ? '?q=' + encodeURIComponent(val) : '');
     });
 
-    // CTA → наверх + фокус
+    <!--
+      // CTA → наверх + фокус
     document.getElementById('tryBtn').addEventListener('click', e => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => { document.getElementById('messageInput').focus(); }, 600);
     });
+    -->
 
     // FAQ accordion
     document.querySelectorAll('.faq-btn').forEach(btn => {
