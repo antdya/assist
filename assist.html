@@ -1391,7 +1391,7 @@
         <div class="profile-item" id="theme-toggle" onclick="toggleTheme()" title="Переключить тему">
           <div class="profile-avatar">АП</div>
           <div class="profile-info">
-            <div class="profile-name">Алексей П.</div>
+            <div class="profile-name">Ваше имя.</div>
             <div class="profile-status">Покупатель · Балашиха</div>
           </div>
           <i data-lucide="sun" width="16" height="16" style="color:var(--text-muted)" id="theme-icon"></i>
@@ -1433,30 +1433,29 @@
 
           <!-- WELCOME (shown when no messages) -->
           <div class="welcome" id="welcome-screen">
-                <p class="welcome-eyebrow">AI-помощник по недвижимости</p>
-                        <h1>AI-помощник<br><em>по покупке жилья</em></h1>
+                <p class="welcome-eyebrow">Ваш AI-помощник по недвижимости</p>
                         <p>Расскажите коротко о вашей ситуации — я помогу разобраться, с чего начать, что проверить и как не переплатить.</p>
 
             <div class="scenario-grid">
               <button class="scenario-card" onclick="startScenario('first')">
                 <div class="scenario-emoji">🏠</div>
-                <div class="scenario-title">Покупаю первый раз</div>
-                <div class="scenario-desc">Разберёмся с чего начать, какой бюджет реален и что важно учесть</div>
+                <div class="scenario-title">Покупаю вместо аренды</div>
+                <div class="scenario-desc">Помогу понять, что выгоднее, посчитать бюджет и подобрать «свою» квартиру.</div>
               </button>
               <button class="scenario-card" onclick="startScenario('mortgage')">
                 <div class="scenario-emoji">💳</div>
-                <div class="scenario-title">Хочу взять ипотеку</div>
-                <div class="scenario-desc">Разберём программы, ставки и сколько вы реально можете взять</div>
+                <div class="scenario-title">Создаём семью и переезжаем</div>
+                <div class="scenario-desc">Помогу согласовать желания, оценить бюджет и выбрать комфортное семейное жильё</div>
               </button>
               <button class="scenario-card" onclick="startScenario('invest')">
                 <div class="scenario-emoji">📈</div>
-                <div class="scenario-title">Инвестиция / сдача в аренду</div>
-                <div class="scenario-desc">Считаем доходность и выбираем тип объекта под вашу цель</div>
+                <div class="scenario-title">data-scenario="Нужна квартира побольше"</div>
+                <div class="scenario-desc">Оценим необходимость переезда и найдём более просторное жильё</div>
               </button>
               <button class="scenario-card" onclick="startScenario('secondary')">
                 <div class="scenario-emoji">🔍</div>
-                <div class="scenario-title">Первичка или вторичка?</div>
-                <div class="scenario-desc">Объективно сравним плюсы и минусы для вашей ситуации</div>
+                <div class="scenario-title">Хочу жильё и район получше</div>
+                <div class="scenario-desc">Помогу перевести желания в критерии и найти реально более комфортное жильё</div>
               </button>
             </div>
             
@@ -1466,23 +1465,23 @@
                     <div class="scenario-grid">
                       <button class="scenario-card" onclick="sendChipMessage('Хочу понять, что лучше: купить или снимать?')">
                         <div class="scenario-emoji">🤔</div>
-                        <div class="scenario-title">Купить или снимать?</div>
-                        <div class="scenario-desc">Объективно сравним варианты для вашей ситуации</div>
+                        <div class="scenario-title">Разъезжаюсь с родителями</div>
+                        <div class="scenario-desc">Помогу сориентироваться в рынке и подобрать первое самостоятельное жильё по средствам</div>
                       </button>
                       <button class="scenario-card" onclick="sendChipMessage('У меня есть материнский капитал — как использовать?')">
                         <div class="scenario-emoji">👶</div>
-                        <div class="scenario-title">Использовать маткапитал</div>
-                        <div class="scenario-desc">Разберёмся с условиями и ограничениями</div>
+                        <div class="scenario-title">Покупаю квартиру для ребёнка</div>
+                        <div class="scenario-desc">Помогу выбрать формат и район, надёжный и удобный на долгий срок</div>
                       </button>
                       <button class="scenario-card" onclick="sendChipMessage('Разъезжаюсь с родителями — что проверить?')">
                         <div class="scenario-emoji">🏠</div>
-                        <div class="scenario-title">Разъезжаюсь с родителями</div>
-                        <div class="scenario-desc">Помогу спланировать бюджет и выбрать стратегию</div>
+                        <div class="scenario-title">Квартира для родителей</div>
+                        <div class="scenario-desc">Подберём удобное и безопасное жильё для родителей рядом с нужной инфраструктурой</div>
                       </button>
                       <button class="scenario-card" onclick="sendChipMessage('Хочу понять, какие риски есть при покупке')">
                         <div class="scenario-emoji">🛡️</div>
-                        <div class="scenario-title">Риски при покупке</div>
-                        <div class="scenario-desc">Что проверить и на что обратить внимание</div>
+                        <div class="scenario-title">Переезжаю в другой город</div>
+                        <div class="scenario-desc">Помогу разобраться в районах, проверить застройщиков и безопасно купить дистанционно</div>
                       </button>
                     </div>
                   </div>
@@ -1493,7 +1492,7 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                 </button>
 
-            <div class="quick-chips">
+            <!--<div class="quick-chips">
               <button class="chip" onclick="sendChipMessage('Какие риски есть при покупке квартиры?')">⚠️ Основные
                 риски</button>
               <button class="chip" onclick="sendChipMessage('Что нужно проверить перед покупкой?')">📋 Чек-лист
@@ -1503,7 +1502,7 @@
               <button class="chip" onclick="sendChipMessage('Стоит ли сейчас покупать или лучше подождать?')">🤔 Сейчас
                 или подождать?</button>
                             <button class="chip" onclick="sendChipMessage('Хочу уточнить мой профиль покупателя')">&#128203; Профиль покупателя</button>
-            </div>
+            </div>-->
           </div>
 
         </div>
