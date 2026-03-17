@@ -1,17 +1,23 @@
 // chatBot.js
 
-function appendMessage(text, sender) {
+function appendMessage(text, sender, isHtml = false) {
   const container = document.getElementById("chatMessages");
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
-  msg.textContent = text;
+
+  if (isHtml) {
+    msg.innerHTML = text;      // используем HTML‑разметку ответа
+  } else {
+    msg.textContent = text;    // безопасный текст для пользователя
+  }
+
   container.appendChild(msg);
   container.scrollTop = container.scrollHeight;
 }
 
 function getBotAnswerByKeywords(text) {
   const normalized = text.toLowerCase();
-  let best = { score: 0, priority: -1, answer: null };
+  let best = { score: 0, priority: -1, item: null };
 
   for (const item of knowledgeBase) {
     let score = 0;
@@ -21,11 +27,11 @@ function getBotAnswerByKeywords(text) {
       }
     }
     if (score > 0 && (score > best.score || (score === best.score && item.priority > best.priority))) {
-      best = { score, priority: item.priority, answer: item.answer };
+      best = { score, priority: item.priority, item };
     }
   }
 
-  return best.answer || defaultAnswer;
+  return best.item || null;
 }
 
 function handleUserInput() {
@@ -34,13 +40,21 @@ function handleUserInput() {
   const text = input.value.trim();
   if (!text) return;
 
-  appendMessage(text, "user");
+  appendMessage(text, "user", false);
   input.value = "";
   btn.disabled = true;
 
   setTimeout(() => {
-    const answer = getBotAnswerByKeywords(text);
-    appendMessage(answer, "bot");
+    const item = getBotAnswerByKeywords(text);
+
+    if (item) {
+      // HTML‑ответ из faqData.js
+      appendMessage(item.answer, "bot", true);
+    } else {
+      // fallback‑текст
+      appendMessage(defaultAnswer, "bot", false);
+    }
+
     btn.disabled = false;
     input.focus();
   }, 300);
@@ -59,5 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  appendMessage("Здравствуйте! Я помогу с вопросами по покупке квартиры. Спросите про ипотеку, бюджет, район, дом, квартиру или документы.", "bot");
+  appendMessage(
+    "Здравствуйте! Кратко опишите вашу ситуацию: например, «покупаю вместо аренды» или «разъезжаюсь с родителями».",
+    "bot",
+    false
+  );
 });
