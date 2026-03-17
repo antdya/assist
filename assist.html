@@ -1695,6 +1695,41 @@
         }
     };
     // ─── AUTO-START SCENARIO FROM URL 
+    document.addEventListener('DOMContentLoaded', () => 
+    {
+      lucide.createIcons();
+    
+      // Читаем параметр из URL
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (!q) return;
+    
+      // Маппинг текстов карточек из index.html → ключи scenarioResponses
+      const scenarioMap = {
+        'Покупаю вместо аренды':         'scenario-buy-instead-rent',
+        'Создаём семью и переезжаем':     'scenario-create-family',
+        'Нужна квартира побольше':        'scenario-upgrade',
+        'Разъезжаюсь с родителями':       'scenario-from-parents',
+        'Покупаю квартиру для ребёнка':   'scenario-for-child',
+        'Квартира для родителей':         'scenario-for-parents',
+        'Переезжаю в другой город':       'scenario-other-city',
+        'Дополнительное жильё для отдыха':'scenario-rest-home',
+        'Инвестирую в недвижимость':      'scenario-invest',
+      };
+    
+      const key = scenarioMap[q];
+      const scenario = key ? scenarioResponses[key] : null;
+    
+      if (scenario) {
+        // Показываем сообщение пользователя и ответ AI
+        setTimeout(() => {
+          addMessage(q, true);
+          setTimeout(() => {
+            addMessage(scenario.message, false);
+          }, 800);
+        }, 300);
+      }
+    });
 
     // ─── SCENARIOS ───────────────────────────────────────────
     const scenarios = {
