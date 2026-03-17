@@ -1694,44 +1694,39 @@
     </ul>`
         }
     };
-    // ─── AUTO-START SCENARIO FROM URL 
-    document.addEventListener('DOMContentLoaded', () => 
-    {
-      lucide.createIcons();
-    
-      // Читаем параметр из URL
-      const params = new URLSearchParams(window.location.search);
-      const q = params.get('q');
-      if (!q) return;
-    
-      // Маппинг текстов карточек из index.html → ключи scenarioResponses
-      const scenarioMap = {
-        'Покупаю вместо аренды':         'scenario-buy-instead-rent',
-        'Создаём семью и переезжаем':     'scenario-create-family',
-        'Нужна квартира побольше':        'scenario-upgrade',
-        'Разъезжаюсь с родителями':       'scenario-from-parents',
-        'Покупаю квартиру для ребёнка':   'scenario-for-child',
-        'Квартира для родителей':         'scenario-for-parents',
-        'Переезжаю в другой город':       'scenario-other-city',
-        'Дополнительное жильё для отдыха':'scenario-rest-home',
-        'Инвестирую в недвижимость':      'scenario-invest',
-      };
-    
-      const key = scenarioMap[q];
-      const scenario = key ? scenarioResponses[key] : null;
-    
-              if (scenario) {
-          // Показываем сообщение пользователя сразу, ответ AI — через 500мс
-          setTimeout(() => {
+// ─── AUTO-START SCENARIO FROM URL
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var q = params.get('q');
+        if (!q) return;
+
+        // Маппинг текстов карточек из index.html → ключи scenarioResponses
+        var scenarioMap = {
+          'Покупаю вместо аренды':         'scenario-buy-instead-rent',
+          'Создаём семью и переезжаем':    'scenario-create-family',
+          'Нужна квартира побольше':         'scenario-upgrade',
+          'Разъезжаюсь с родителями':      'scenario-from-parents',
+          'Покупаю квартиру для ребёнка':  'scenario-for-child',
+          'Квартира для родителей':       'scenario-for-parents',
+          'Переезжаю в другой город':       'scenario-other-city',
+          'Дополнительное жильё для отдыха': 'scenario-rest-home',
+          'Инвестирую в недвижимость':  'scenario-invest',
+        };
+
+        var key = scenarioMap[q];
+        var scenario = key ? scenarioResponses[key] : null;
+
+        if (scenario) {
+          setTimeout(function() {
             addMessage(q, true);
-            setTimeout(() => { addTypingIndicator(); }, 200);
-            setTimeout(() => {
+            setTimeout(function() { addTypingIndicator(); }, 200);
+            setTimeout(function() {
               removeTypingIndicator();
               addMessage(scenario.message, false);
             }, 500);
           }, 300);
-        });
-
+        }
+      })();
     // ─── SCENARIOS ───────────────────────────────────────────
     const scenarios = {
       first: {
