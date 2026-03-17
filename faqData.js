@@ -5,7 +5,7 @@ const knowledgeBase = [
     id: "scenario-buy-instead-rent",
     topic: "Покупаю вместо аренды",
     priority: 3,
-    keywords: ["аренда", "арендую", "снимаю", "купить вместо аренды", "перестать арендовать"],
+    keywords: ["Покупаю вместо аренды", "аренда", "арендую", "снимаю", "купить вместо аренды", "перестать арендовать"],
     answer: `
 <section id="scenario-buy-instead-rent">
   <h2>Покупаю вместо аренды</h2>
