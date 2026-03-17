@@ -1720,16 +1720,17 @@
       const key = scenarioMap[q];
       const scenario = key ? scenarioResponses[key] : null;
     
-      if (scenario) {
-        // Показываем сообщение пользователя и ответ AI
-        setTimeout(() => {
-          addMessage(q, true);
+              if (scenario) {
+          // Показываем сообщение пользователя сразу, ответ AI — через 500мс
           setTimeout(() => {
-            addMessage(scenario.message, false);
-          }, 800);
-        }, 300);
-      }
-    });
+            addMessage(q, true);
+            setTimeout(() => { addTypingIndicator(); }, 200);
+            setTimeout(() => {
+              removeTypingIndicator();
+              addMessage(scenario.message, false);
+            }, 500);
+          }, 300);
+        };
 
     // ─── SCENARIOS ───────────────────────────────────────────
     const scenarios = {
