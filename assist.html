@@ -497,6 +497,56 @@
     @keyframes float {
 
       0%,
+      
+/* ─── WELCOME EYEBROW ────────────────────────────── */
+.welcome-eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+/* ─── SCENARIOS EXTRA (hidden toggle) ────────────── */
+.scenarios-extra {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.scenarios-extra.is-open {
+  grid-template-rows: 1fr;
+}
+.scenarios-extra-inner {
+  overflow: hidden;
+}
+.scenarios-extra-inner .scenario-grid {
+  padding-top: var(--space-3);
+}
+.scenarios-toggle {
+  margin-top: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.scenarios-toggle svg {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scenarios-toggle.is-open svg {
+  transform: rotate(180deg);
+}
+.scenarios-toggle:hover {
+  color: var(--accent);
+}
       100% {
         transform: translateY(0);
       }
@@ -1383,17 +1433,9 @@
 
           <!-- WELCOME (shown when no messages) -->
           <div class="welcome" id="welcome-screen">
-            <div class="welcome-icon">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9,22 9,12 15,12 15,22" />
-              </svg>
-            </div>
-
-            <h1>Привет, я помогу найти<br><em>ваш</em> вариант жилья</h1>
-            <p>Расскажите, с чего хотите начать — я подстроюсь под вашу ситуацию и помогу разобраться во всём шаг за
-              шагом.</p>
+                <p class="welcome-eyebrow">AI-помощник по недвижимости</p>
+                        <h1>AI-помощник<br><em>по покупке жилья</em></h1>
+                        <p>Расскажите коротко о вашей ситуации — я помогу разобраться, с чего начать, что проверить и как не переплатить.</p>
 
             <div class="scenario-grid">
               <button class="scenario-card" onclick="startScenario('first')">
@@ -1417,6 +1459,39 @@
                 <div class="scenario-desc">Объективно сравним плюсы и минусы для вашей ситуации</div>
               </button>
             </div>
+            
+                <!-- Расширенные сценарии (скрытые) -->
+                <div class="scenarios-extra" id="scenariosExtra" aria-hidden="true">
+                  <div class="scenarios-extra-inner">
+                    <div class="scenario-grid">
+                      <button class="scenario-card" onclick="sendChipMessage('Хочу понять, что лучше: купить или снимать?')">
+                        <div class="scenario-emoji">🤔</div>
+                        <div class="scenario-title">Купить или снимать?</div>
+                        <div class="scenario-desc">Объективно сравним варианты для вашей ситуации</div>
+                      </button>
+                      <button class="scenario-card" onclick="sendChipMessage('У меня есть материнский капитал — как использовать?')">
+                        <div class="scenario-emoji">👶</div>
+                        <div class="scenario-title">Использовать маткапитал</div>
+                        <div class="scenario-desc">Разберёмся с условиями и ограничениями</div>
+                      </button>
+                      <button class="scenario-card" onclick="sendChipMessage('Разъезжаюсь с родителями — что проверить?')">
+                        <div class="scenario-emoji">🏠</div>
+                        <div class="scenario-title">Разъезжаюсь с родителями</div>
+                        <div class="scenario-desc">Помогу спланировать бюджет и выбрать стратегию</div>
+                      </button>
+                      <button class="scenario-card" onclick="sendChipMessage('Хочу понять, какие риски есть при покупке')">
+                        <div class="scenario-emoji">🛡️</div>
+                        <div class="scenario-title">Риски при покупке</div>
+                        <div class="scenario-desc">Что проверить и на что обратить внимание</div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="scenarios-toggle" id="scenariosToggle" aria-expanded="false" aria-controls="scenariosExtra">
+                  <span id="toggleText">Показать больше</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
 
             <div class="quick-chips">
               <button class="chip" onclick="sendChipMessage('Какие риски есть при покупке квартиры?')">⚠️ Основные
@@ -1427,6 +1502,7 @@
                 Маткапитал</button>
               <button class="chip" onclick="sendChipMessage('Стоит ли сейчас покупать или лучше подождать?')">🤔 Сейчас
                 или подождать?</button>
+                            <button class="chip" onclick="sendChipMessage('Хочу уточнить мой профиль покупателя')">&#128203; Профиль покупателя</button>
             </div>
           </div>
 
@@ -2019,8 +2095,24 @@
     // ─── INIT ────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
+      
+  // ─── SCENARIOS TOGGLE ────────────────────────────
+  const scenariosToggleEl = document.getElementById('scenariosToggle');
+  const scenariosExtraEl = document.getElementById('scenariosExtra');
+  const toggleTextEl = document.getElementById('toggleText');
+  if (scenariosToggleEl && scenariosExtraEl) {
+    scenariosToggleEl.addEventListener('click', () => {
+      const open = scenariosExtraEl.classList.toggle('is-open');
+      scenariosToggleEl.classList.toggle('is-open', open);
+      scenariosToggleEl.setAttribute('aria-expanded', open);
+      scenariosExtraEl.setAttribute('aria-hidden', !open);
+      if (toggleTextEl) toggleTextEl.textContent = open ? 'Меньше' : 'Показать больше';
+    });
+  }
     });
   </script>
 </body>
 
 </html>
+
+  
