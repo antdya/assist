@@ -493,10 +493,10 @@
       box-shadow: 0 0 32px var(--accent-glow);
       animation: float 4s ease-in-out infinite;
     }
-
     @keyframes float {
-
-      0%,
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
       
 /* ─── WELCOME EYEBROW ────────────────────────────── */
 .welcome-eyebrow {
